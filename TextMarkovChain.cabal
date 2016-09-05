@@ -1,8 +1,8 @@
 name:                TextMarkovChain
 version:             0.1.0.0
 synopsis:            Markov chains of text
-description:         Please see README.md
-homepage:            https://github.com/caneroj1/TextMarkovChain#readme
+description:         Generate pseudo-random text from markov models
+homepage:            https://github.com/caneroj1/Markov-hs#readme
 license:             BSD3
 license-file:        LICENSE
 author:              Joe Canero
@@ -51,4 +51,4 @@ test-suite TextMarkovChain-test
 
 source-repository head
   type:     git
-  location: https://github.com/caneroj1/TextMarkovChain
+  location: https://github.com/caneroj1/Markov-hs
