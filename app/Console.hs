@@ -1,3 +1,5 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 module Console
   (
     markovConsole
@@ -8,7 +10,7 @@ import Utilities
 import Lib
 import Control.Monad.State
 import System.Random (newStdGen)
-import qualified Data.Text as Text (pack, words)
+import qualified Data.Text as Text (pack, words, unpack)
 import Text.Read (readMaybe)
 import Data.Maybe (fromMaybe)
 import System.Exit
@@ -61,8 +63,9 @@ runAction (Add l)   = addToTree l
 runAction (Gen x y) = do
   markovTree <- currentTree <$> get
   liftIO . replicateM_ x $
-    print . prettify . getChainFrom markovTree y =<< newStdGen
-runAction Read      = readFromFile
+    putStrLn . ("- " ++) . Text.unpack . prettify . getChainFrom markovTree y
+    =<< newStdGen
+runAction Read      = readFromFile >> liftIO (putStrLn "...Done")
 runAction Help      = liftIO $ putStr help
 runAction Quit      = liftIO exitSuccess
 
