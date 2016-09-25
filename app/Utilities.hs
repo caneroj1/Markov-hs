@@ -20,12 +20,12 @@ getNGramsFromFile :: FilePath -> Int -> IO [[Text]]
 getNGramsFromFile fp ngrams =
   fixUnbalancedNGrams ngrams <$>
     runResourceT (
-      CC.sourceFile fp                        =$=
-      CT.lines                                =$=
-      CC.concatMap Text.words                 =$=
-      CC.filter (not . Text.null)             =$=
-      CC.map Text.toLower                     =$=
-      CC.slidingWindow ngrams                 $$
+      CC.sourceFile fp            =$=
+      CT.lines                    =$=
+      CC.concatMap Text.words     =$=
+      CC.filter (not . Text.null) =$=
+      CC.map Text.toLower         =$=
+      CC.slidingWindow ngrams     $$
       CL.consume)
 
 fixUnbalancedNGrams :: Int -> [[Text]] -> [[Text]]
